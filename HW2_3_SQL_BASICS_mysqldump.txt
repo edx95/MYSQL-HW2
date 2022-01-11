@@ -1,0 +1,303 @@
+﻿# 3.Создайте дамп базы данных example из предыдущего задания, разверните содержимое дампа
+в новую базу данных sample.
+
+#  Заходим в клиент mysql при помощи файла с паролями my.cnf
+
+Microsoft Windows [Version 6.1.7601]
+(c) Корпорация Майкрософт (Microsoft Corp.), 2009. Все права защищены.
+
+C:\Users\Asus>mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.27 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+# Проверяем таблицы в текущей базе данных
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| example            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.06 sec)
+
+# Выходим из клиента для создания дампа
+mysql> exit
+Bye
+
+C:\Users\Asus>mysqldump
+Usage: mysqldump [OPTIONS] database [tables]
+OR     mysqldump [OPTIONS] --databases [OPTIONS] DB1 [DB2 DB3...]
+OR     mysqldump [OPTIONS] --all-databases [OPTIONS]
+For more options, use mysqldump --help
+
+# для создания дампа мы указаваем для какой базы данных создать дамп (example).
+C:\Users\Asus>mysqldump example
+-- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
+--
+-- Host: localhost    Database: example
+-- ------------------------------------------------------
+-- Server version       8.0.27
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0
+*/;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  UNIQUE KEY `id` (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-01-11 22:34:00
+
+# Перенаправляем базу данных в файл.
+C:\Users\Asus>mysqldump example > example.sql
+
+C:\Users\Asus>dir
+ Том в устройстве C не имеет метки.
+ Серийный номер тома: 8202-907A
+
+ Содержимое папки C:\Users\Asus
+
+11.01.2022  22:35    <DIR>          .
+11.01.2022  22:35    <DIR>          ..
+07.12.2020  10:53    <DIR>          .astropy
+03.01.2022  23:39             5 414 .bash_history
+18.09.2019  22:24    <DIR>          .cache
+06.12.2020  12:35    <DIR>          .conda
+22.02.2021  20:58                43 .condarc
+30.12.2021  20:20    <DIR>          .eclipse
+23.10.2021  12:33               111 .gitconfig
+07.12.2020  10:30    <DIR>          .idlerc
+11.10.2021  19:05    <DIR>          .ipynb_checkpoints
+29.11.2020  15:49    <DIR>          .ipython
+29.11.2020  18:11    <DIR>          .jupyter
+24.10.2021  11:53                20 .lesshst
+29.11.2020  15:50    <DIR>          .matplotlib
+05.12.2020  22:14    <DIR>          .pylint.d
+29.11.2020  16:56    <DIR>          .spyder-py3
+10.01.2022  00:15    <DIR>          .VirtualBox
+14.11.2020  16:07    <DIR>          .vscode
+24.01.2013  22:27                 0 agent.log
+29.11.2020  14:35    <DIR>          anaconda3
+28.01.2014  19:16    <DIR>          AsusDrivers
+24.01.2013  21:05    <DIR>          Contacts
+02.01.2022  21:46    <DIR>          Desktop
+04.12.2014  10:46    <DIR>          DeutzSmgEngineTempFiles
+04.02.2021  20:26    <DIR>          Doctor Web
+02.01.2022  17:06    <DIR>          Documents
+09.01.2022  21:06    <DIR>          Downloads
+24.01.2021  20:36            30 208 DZ 1 BBM Eduard Zanders(1).ipynb
+04.02.2021  00:14            32 362 DZ 1 BBM Eduard Zanders.ipynb
+07.02.2021  18:48         1 348 304 DZ3 BBM Eduard Zanders.ipynb
+11.02.2021  22:18             2 602 DZ5 BBM Eduard Zanders-Copy1.ipynb
+12.02.2021  18:17             2 923 DZ5 BBM Eduard Zanders.ipynb
+12.02.2021  18:39             7 083 DZ5 BBM Teor ver busiko7.ipynb
+12.02.2021  18:48            37 872 DZ5 BBM Teor ver Inlun.ipynb
+12.02.2021  18:36            33 890 DZ5 BBM Teor Ver Koryagin2006.ipynb
+07.02.2021  20:54             2 128 DZ5.1 BBM Eduard Zanders
+17.02.2021  23:03             6 136 DZ7 BBM SLAU MATRIX.ipynb
+23.02.2021  01:21             8 400 DZ8 BBM SLAU.ipynb
+05.12.2020  21:25             1 518 example 142a.png
+05.12.2020  21:25            34 081 example 142b.png
+11.01.2022  22:35             1 946 example.sql
+28.10.2014  13:01    <DIR>          Favorites
+06.12.2020  20:23            97 167 fgrfg.ipynb
+22.01.2021  21:30            17 741 LES1 VVM.ipynb
+29.12.2020  21:13            14 546 less 2 linalg.ipynb
+22.01.2021  18:00             4 910 Less 5 linalg DZ.ipynb
+20.01.2021  23:04             3 952 Less 5 linalg SVD.ipynb
+29.12.2020  13:45             4 733 less1 linalg-Copy1.ipynb
+29.12.2020  13:53             6 073 less1 linalg.ipynb
+03.01.2021  16:55            36 997 less5.ipynb
+17.01.2021  23:20            30 525 Lesson 4 Linalg.ipynb
+04.01.2021  12:19            10 888 Lesson 5 DZ.ipynb
+27.07.2018  18:59    <DIR>          Links
+06.12.2020  14:07           368 180 metodicka po dz v programme.ipynb
+12.12.2020  16:07    <DIR>          Music
+07.02.2021  11:29            10 003 Natali 2001 dz5.ipynb
+29.11.2020  19:43            31 575 Ne korektnaja rabota Jupyter_ne risujet graf
+iki-Copy1.ipynb
+29.11.2020  19:33            31 575 Ne korektnaja rabota Jupyter_ne risujet graf
+iki.ipynb
+01.02.2021  22:00            49 440 Parabola.ipynb
+14.03.2021  08:50    <DIR>          Pictures
+14.11.2021  20:48    <DIR>          PycharmProjects
+12.09.2013  22:27    <DIR>          Saved Games
+03.05.2016  14:04    <DIR>          Searches
+11.10.2021  18:47            35 904 solutions1.ipynb
+25.07.2016  11:29                 0 Sti_Trace.log
+11.01.2016  14:51    <DIR>          Tracing
+05.12.2020  20:19    <DIR>          Untitled Folder
+29.11.2020  17:22             2 003 Untitled.ipynb
+29.11.2020  17:29                 0 untitled.txt
+29.11.2020  17:13               586 Untitled1.ipynb
+05.12.2020  20:18                 0 untitled1.txt
+01.12.2020  20:04            10 788 Untitled10.ipynb
+05.12.2020  21:27            78 112 Untitled11.ipynb
+05.12.2020  21:31           106 485 Untitled12.ipynb
+05.12.2020  21:54             1 271 Untitled13.ipynb
+05.12.2020  22:10            47 173 Untitled14.ipynb
+06.12.2020  10:50            25 526 Untitled15.ipynb
+06.12.2020  13:41            65 959 Untitled16.ipynb
+22.12.2020  19:57            12 744 Untitled17.ipynb
+22.12.2020  14:53             1 550 Untitled18.ipynb
+25.12.2020  22:35               808 Untitled19.ipynb
+29.11.2020  17:27             1 821 Untitled2.ipynb
+28.12.2020  18:21               555 Untitled20.ipynb
+29.12.2020  13:14             1 461 Untitled21.ipynb
+29.12.2020  13:21             1 130 Untitled22.ipynb
+29.12.2020  13:54                72 Untitled23.ipynb
+29.12.2020  21:14               573 Untitled24.ipynb
+01.01.2021  18:25             1 416 Untitled25.ipynb
+03.01.2021  15:55                72 Untitled26.ipynb
+03.01.2021  16:48             3 039 Untitled27.ipynb
+04.01.2021  11:31             1 466 Untitled28.ipynb
+09.01.2021  16:07               783 Untitled29.ipynb
+05.12.2020  21:22               555 Untitled3.ipynb
+09.01.2021  19:27             2 499 Untitled30.ipynb
+17.01.2021  20:13                72 Untitled31.ipynb
+20.01.2021  22:47             3 378 Untitled32.ipynb
+22.01.2021  18:11             1 319 Untitled33.ipynb
+22.01.2021  18:14             1 462 Untitled34.ipynb
+22.01.2021  21:26            21 693 Untitled35.ipynb
+30.01.2021  13:09               829 Untitled36.ipynb
+06.02.2021  17:48                72 Untitled37.ipynb
+07.02.2021  11:27             8 947 Untitled38.ipynb
+08.02.2021  22:55            35 140 Untitled39.ipynb
+29.11.2020  18:10             1 427 Untitled4.ipynb
+08.02.2021  23:52             1 039 Untitled40.ipynb
+08.02.2021  23:55            34 603 Untitled41.ipynb
+09.02.2021  00:57            11 671 Untitled42.ipynb
+11.02.2021  22:55             1 877 Untitled43.ipynb
+12.02.2021  00:29             1 946 Untitled44.ipynb
+12.02.2021  20:56            11 337 Untitled45.ipynb
+20.02.2021  15:41             2 161 Untitled46.ipynb
+20.02.2021  12:24                72 Untitled47.ipynb
+29.11.2020  21:17             1 079 Untitled5.ipynb
+29.11.2020  18:35            21 360 Untitled6.ipynb
+29.11.2020  18:47            21 246 Untitled7.ipynb
+29.11.2020  22:34                72 Untitled8.ipynb
+01.12.2020  19:27             1 631 Untitled9.ipynb
+11.01.2022  21:16    <DIR>          Videos
+04.01.2014  22:25             1 209 Загрузки - Ярлык.lnk
+23.12.2020  13:08             5 561 методичка к 1 ур л а.ipynb
+11.10.2021  19:01            35 849 Теория вероятностей и математическая статист
+ика Урок 1 Случайные события Разбор домашнего задания.ipynb
+              89 файлов      2 904 749 байт
+              33 папок  99 299 377 152 байт свободно
+
+# появился файл 11.01.2022  22:35             1 946 example.sql , куда мы перенаправили базу двнных. 
+# Это как раз наш дамп. Который мы можем перенести, либо загрузить в другую базу данных.
+# Как загрузить в другую базу данных?
+# Создаем новую базу данных.
+# Заходим в клиент.
+
+C:\Users\Asus>mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.27 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+# Создаем новую базу данных.
+
+mysql> CREATE DATABASE sample;
+Query OK, 1 row affected (0.01 sec)
+
+# Выходим из клиента, так как работа с дампами происходит из командной строки.
+mysql> exit
+Bye
+
+# Указываем имя базы данных целевой, куда мы должны загрузить данные  и перенаправляем  "<"  в эту базу данных содержимое файла " example.sql" т.е. нашего дампа.
+C:\Users\Asus>mysql sample < example.sql
+# С помощью этой команды мы выполним весь список команд которые есть в дампе (в файле example.sql) в базе данных "sample".
+# Таким образом воссоздадим  исходную структуру, но уже в другой базе данных.
+
+
+# Проверяем
+
+C:\Users\Asus>mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 13
+Server version: 8.0.27 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+# Делаем текущей нашу новую базу данных "sample"
+mysql> USE sample;
+Database changed
+
+# Смотрим содержимое баз данных
+mysql> SHOW TABLES;
++------------------+
+| Tables_in_sample |
++------------------+
+| users            |
++------------------+
+1 row in set (0.01 sec)
+
+# Появилась таблица и наша задача выполнена
+mysql> exit
+Bye
+
+C:\Users\Asus>
